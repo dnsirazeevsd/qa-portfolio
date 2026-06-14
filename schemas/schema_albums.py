@@ -1,6 +1,7 @@
 SCHEMA_ALBUMS = {
     "type": "object",
-    "properties":{
+    "properties":
+    {
         "userId": {"type": "integer"},
         "id": {"type": "integer"},
         "title": {"type": "string"}

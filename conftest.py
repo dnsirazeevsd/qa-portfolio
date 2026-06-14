@@ -20,4 +20,3 @@ def logged_request():
         print(f"<-Response status: {response.status_code}")
         return response
     return _make_request
-
