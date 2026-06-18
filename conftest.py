@@ -1,5 +1,6 @@
 import pytest
 import requests
+from src.todo import TodoList
 
 BASE_URL = "https://jsonplaceholder.typicode.com"
 
@@ -20,3 +21,18 @@ def logged_request():
         print(f"<-Response status: {response.status_code}")
         return response
     return _make_request
+
+#Создание пустого списка задача
+@pytest.fixture()
+def todo():
+    return TodoList()
+
+@pytest.fixture()
+def todo_tasks():
+    todo_tasks = TodoList()
+
+    todo_tasks.add_task("A")
+    todo_tasks.add_task("B")
+    todo_tasks.add_task("C")
+
+    return todo_tasks
