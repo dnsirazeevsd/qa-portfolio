@@ -1,6 +1,7 @@
 import pytest
 import requests
 from src.todo import TodoList
+from src.counter import Counter
 
 BASE_URL = "https://jsonplaceholder.typicode.com"
 
@@ -22,11 +23,12 @@ def logged_request():
         return response
     return _make_request
 
-#Создание пустого списка задача
+#Создание пустого списка задача(класс TodoList)
 @pytest.fixture()
 def todo():
     return TodoList()
 
+#Создание списка из 3 задач(класс TodoList)
 @pytest.fixture()
 def todo_tasks():
     todo_tasks = TodoList()
@@ -36,3 +38,8 @@ def todo_tasks():
     todo_tasks.add_task("C")
 
     return todo_tasks
+
+#Создание пустого счетчика(класс Counter)
+@pytest.fixture()
+def counter():
+    return Counter()
