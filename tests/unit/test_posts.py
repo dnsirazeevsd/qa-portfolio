@@ -11,9 +11,7 @@ def test_posts(logged_request):
         "userId": 1
     }
 
-    response = requests.post("https://jsonplaceholder.typicode.com/posts", json=obj)
-    assert response.status_code == 201
-    response_json = response.json()
-    assert response_json["title"] == obj["title"]
-    assert response_json["body"] == obj["body"]
-    assert response_json["userId"] == obj["userId"]
+    response = logged_request("/posts", "POST", json=obj)
+    assert response.json()["title"] == obj["title"]
+    assert response.json()["body"] == obj["body"]
+    assert response.json()["userId"] == obj["userId"]
