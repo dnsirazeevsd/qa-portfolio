@@ -29,8 +29,9 @@ def test_func_decrement_negative(counter):
 #Сбрасываения счетчика
 def test_func_reset(counter):
     counter.increment(10)
-    counter.reset()
+    assert counter.get_value() == 10
 
+    counter.reset()
     assert counter.get_value() == 0
 
 #Проверка текущего состояния счетчика
