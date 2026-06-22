@@ -3,6 +3,7 @@ import requests
 from src.todo import TodoList
 from src.counter import Counter
 from src.library import Library
+from src.user_manager import UserManager
 
 BASE_URL = "https://jsonplaceholder.typicode.com"
 
@@ -64,3 +65,18 @@ def library_with_books():
     lib.add_book("The Hobbit")
 
     return lib
+
+#Пустой менеджер (класс UserManager)
+@pytest.fixture()
+def user_manager():
+    return UserManager()
+
+#Менеджер с данными пользователей
+@pytest.fixture()
+def user_manager_filled():
+    um = UserManager()
+
+    um.register_user("admin", "12345")
+    um.register_user("danil", "qwerty")
+
+    return um
