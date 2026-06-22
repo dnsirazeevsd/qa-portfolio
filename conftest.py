@@ -2,6 +2,7 @@ import pytest
 import requests
 from src.todo import TodoList
 from src.counter import Counter
+from src.library import Library
 
 BASE_URL = "https://jsonplaceholder.typicode.com"
 
@@ -47,3 +48,19 @@ def todo_tasks():
 @pytest.fixture()
 def counter():
     return Counter()
+
+#Создание пустой библиотеки(класс Library)
+@pytest.fixture()
+def library():
+    return Library()
+
+#Создание библиотеки с 3 книгами(класс Library)
+@pytest.fixture()
+def library_with_books():
+    lib = Library()
+
+    lib.add_book("Harry Potter")
+    lib.add_book("1984")
+    lib.add_book("The Hobbit")
+
+    return lib
