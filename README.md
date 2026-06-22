@@ -1,4 +1,4 @@
-**Мой портфолио Junior QA Automation Engineer**  
+**Мое портфолио Junior QA Automation Engineer**  
 ---
 
 ## О проекте
