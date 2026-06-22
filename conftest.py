@@ -14,20 +14,17 @@ def base_url():
         return requests.get(BASE_URL + path)
     return _get
 
-#Логирование запросов
+#Логирование запросов(по умолчанию ставим GET)
 @pytest.fixture()
-def logged_request():
-    # Добавляем метод по умолчанию="GET"
-    def _make_request(path, method="GET", **kwargs):
+def logger_request():
+    def make_request(path, method="GET"):
         url = BASE_URL + path
-        print(f"-> Sending {method} request to {url}")
-        
-        response = requests.request(method=method, url=url, **kwargs)
-        
+        print(f"\n-> Sending request {url}")
+        response = requests.request(method=method, url=url)
         print(f"<- Response status: {response.status_code}")
+
         return response
-        
-    return _make_request
+    return make_request
 
 #Создание пустого списка задача(класс TodoList)
 @pytest.fixture()
