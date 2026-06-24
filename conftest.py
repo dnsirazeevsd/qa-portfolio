@@ -7,24 +7,22 @@ from src.user_manager import UserManager
 
 BASE_URL = "https://jsonplaceholder.typicode.com"
 
-#Создание линка для запроса
-@pytest.fixture()
-def base_url():
-    def _get(path):
-        return requests.get(BASE_URL + path)
-    return _get
-
-#Логирование запросов(по умолчанию ставим GET)
+#Создание линка для запроса + логирование
 @pytest.fixture()
 def logger_request():
-    def make_request(path, method="GET"):
+    def make_link(path, method="GET"):
         url = BASE_URL + path
-        print(f"\n-> Sending request {url}")
+        print(f"-> Sending request {url}")
         response = requests.request(method=method, url=url)
-        print(f"<- Response status: {response.status_code}")
-
+        print(f"<- Response status {response.status_code}")
         return response
-    return make_request
+    return make_link
+
+#Возврат .json() у обьекта users/1
+@pytest.fixture()
+def return_json(logger_request):
+    response = logger_request("/users/1", "GET")
+    return response.json()
 
 #Создание пустого списка задача(класс TodoList)
 @pytest.fixture()
