@@ -7,6 +7,31 @@ from src.user_manager import UserManager
 
 BASE_URL = "https://jsonplaceholder.typicode.com"
 
+@pytest.fixture(scope="session")
+def my_fixture():
+    print("CREATE")
+    return 100
+
+#Возврат base_url линка
+@pytest.fixture(scope="function")
+def base_url():
+    return BASE_URL
+
+#Создание линка для request
+@pytest.fixture(scope="session")
+def posts_client():
+    def make_request(path):
+        url = BASE_URL + path
+        response = requests.get(url=url)
+        return response
+    return make_request
+
+#Возврат первого элемента в списке -> posts[0]
+@pytest.fixture(scope="session")
+def first_post(posts_client):
+    resp = posts_client("/posts")
+    return resp.json()[0]
+
 #Создание линка для запроса + логирование
 @pytest.fixture()
 def logger_request():

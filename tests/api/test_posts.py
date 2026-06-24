@@ -1,17 +1,29 @@
 import pytest
-import requests
-from faker import Faker 
 
-def test_posts(logged_request):
-    fake = Faker()
-    
-    obj = {
-        "title" : fake.sentence(),
-        "body": fake.text(),
-        "userId": 1
-    }
+#Общий тест на структуру posts[]
+def test_scope(posts_client):
+    resp = posts_client("/posts")
+    data = resp.json()
 
-    response = logged_request("/posts", "POST", json=obj)
-    assert response.json()["title"] == obj["title"]
-    assert response.json()["body"] == obj["body"]
-    assert response.json()["userId"] == obj["userId"]
+    assert resp.status_code == 200
+    assert isinstance(data, list)
+
+    assert len(data) == 100
+
+#Тест на наличие полей в структуре обьекта post
+@pytest.mark.parametrize("field",
+[
+    "userId",
+    "id",
+    "title",
+    "body"
+])
+def test_struct_post(first_post, field):
+
+    assert field in first_post
+
+def test_1(my_fixture):
+    my_fixture
+
+def test_2(my_fixture):
+    my_fixture
