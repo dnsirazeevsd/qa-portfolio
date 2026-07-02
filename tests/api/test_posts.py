@@ -21,9 +21,3 @@ def test_scope(posts_client):
 def test_struct_post(first_post, field):
 
     assert field in first_post
-
-def test_1(my_fixture):
-    my_fixture
-
-def test_2(my_fixture):
-    my_fixture
