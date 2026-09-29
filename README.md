@@ -21,6 +21,7 @@
 - **HTTP-клиент**: requests
 - **Валидация**: jsonschema
 - **Генерация данных**: Faker
+- **CI:** GitHub Actions
 - **Дополнительно**: conftest.py (fixtures), src/tests separation
 
 ---
@@ -29,7 +30,9 @@
 
 ```bash
 qa-portfolio/
-├── src/                  # Исходный код тестируемых модулей
+├── src/   
+├── .github/workflows/
+│   └── tests.yml                  
 ├── tests/                # Все автотесты
 │   ├── unit/
 │   └── api/              # API-тесты
