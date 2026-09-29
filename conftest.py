@@ -100,3 +100,4 @@ def user_manager_filled():
     um.register_user("danil", "qwerty")
 
     return um
+
